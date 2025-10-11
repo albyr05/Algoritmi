@@ -22,6 +22,7 @@ int leggi_comando ();
 void sort_struct (tratta v[], int nr, int par);
 int compare_par(tratta a, tratta b, int par );
 void search_departing(tratta v[], int nr, char station[]);
+void dicotomic_reaserch (tratta *v, int l, int r, char *station);
 //---------------------------------------------------------------------------
 
 int main(void) {
@@ -98,7 +99,8 @@ void menu_parola(comando_e input, tratta v[], int nr) {
             printf ("Indica la stazione di partenza che vuoi ricercare: ");
             char station[30];
             scanf("%s", station);
-            search_departing(v, nr, station);
+            //search_departing(v, nr, station);
+            dicotomic_reaserch(v, 0, nr, station);
             break;
         }
         case fine: {                    // uscita dal programma
@@ -164,4 +166,17 @@ void search_departing(tratta v[], int nr, char *station){
         printf("Nessuna stazione di partenza trovata con %s", station);
     }
 
+}
+
+// ricerca dicotomica
+void dicotomic_reaserch (tratta *v, int l, int r, char *station){
+    if (l >= r){
+        if (strstr(v[l].partenza, station) == v[l].partenza){
+            printf("\n%s %s %s %s %s %s %d", v[l].code, v[l].partenza, v[l].destinazione, v[l].data, v[l].ora_p, v[l].ora_a,  v[l].ritardo);
+        }
+        return;
+    }
+    int m = (l+r)/2;
+    dicotomic_reaserch(v, l, m, station);
+    dicotomic_reaserch(v, m+1, r, station);
 }
