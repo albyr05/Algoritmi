@@ -1,15 +1,15 @@
 {
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "name": "C/C++: clang build and debug active file",
-      "type": "lldb",
-      "request": "launch",
-      "program": "${fileDirname}/${fileBasenameNoExtension}",
-      "args": [],
-      "cwd": "${fileDirname}",
-      "terminal": "integrated",
-      "preLaunchTask": "C/C++: clang build active file"
-    }
-  ]
+ "version": "0.2.0",
+ "configurations": [
+  {
+   "name": "C/C++: clang build and debug active file",
+   "type": "lldb",
+   "request": "launch",
+   "program": "${fileDirname}/${fileBasenameNoExtension}",
+   "args": [],
+   "cwd": "${fileDirname}",
+   "terminal": "integrated",
+   "preLaunchTask": "C/C++: clang build active file"
+  }
+ ]
 }

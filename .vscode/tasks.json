@@ -4,7 +4,7 @@
         {
             "label": "Build & Run C",
             "type": "shell",
-            "command": "clang -Wall \"${file}\" -o \"${fileDirname}/${fileBasenameNoExtension}\" && echo '' && echo '🚀 Output del programma:' && echo '' && \"${fileDirname}/${fileBasenameNoExtension}\"",
+            "command": "clang -Wall -g \"${file}\" -o \"${fileDirname}/${fileBasenameNoExtension}\" && echo '' && echo '🚀 Output del programma:' && echo '' && \"${fileDirname}/${fileBasenameNoExtension}\"",
             "group": {
                 "kind": "build",
                 "isDefault": true
