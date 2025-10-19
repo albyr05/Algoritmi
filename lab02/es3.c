@@ -164,34 +164,26 @@ int compare_struct(tratta *a, tratta *b, int par){
     return 0;
 }
 
-void merge(tratta **tipo, int comparison, int l, int r, int m, int nr){
-    tratta *supp[nr];
-    int i = l, j = m+1, k = l;
-    while (i <= m && j <= r){
-        if (compare_struct(tipo[i], tipo[j], comparison) <= 0){
-            supp[k] = tipo[i++];
-        }
-        else {
-            supp[k] = tipo[j++];
-        }
-        k++;
+void merge(tratta **tipo, int comparison, int l, int r, int m, int nr) {
+    int i = l, j = m + 1, k = 0;
+    tratta **supp = malloc((r - l + 1) * sizeof(tratta *));
+    if (!supp) return;
+
+    while (i <= m && j <= r) {
+        if (compare_struct(tipo[i], tipo[j], comparison) <= 0)
+            supp[k++] = tipo[i++];                      // copying from the left side
+        else
+            supp[k++] = tipo[j++];                      // copying from the right side
     }
-    while (i <= m){
-        supp[k++] = tipo[i++];
-    }
-    while (j <= r){
-        supp[k++] = tipo[j++];
-    }
-    for (i = l; i <= r; i++){
-        tipo[i] = supp[i];
-    }
+    while (i <= m) supp[k++] = tipo[i++];           // filling with one of the the two sides when the other is finished 
+    while (j <= r) supp[k++] = tipo[j++];
+
+    for (i = 0; i < k; i++) tipo[l + i] = supp[i];
+    free(supp);
 }
 
-// free all the memory allocated (theoretically)
+// free all the memory allocated 
 void freeall(tratta **v, tratta ***v_data, tratta ***v_code, tratta ***v_partenza, tratta ***v_arrivo){
-    free(*v);
-    free(*v_data);
-    free(*v_code);
-    free(*v_partenza);
-    free(*v_arrivo);
+    free(*v); free(*v_data); free(*v_code); free(*v_partenza); free(*v_arrivo);
+    *v = NULL; *v_data = NULL; *v_code = NULL; *v_partenza = NULL; *v_arrivo = NULL;
 }
