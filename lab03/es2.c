@@ -137,7 +137,7 @@ bool valid_code(char *c){
 
 // checking the date format
 bool valid_date (char *d){
-    int g, m, a, c;
+    int g, m, a;
     if (sscanf (d, "%d/%d/%d", &g, &m, &a) != 3){
         return false;
     } 
