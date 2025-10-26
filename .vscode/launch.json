@@ -2,13 +2,15 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Debug C con CodeLLDB",
+      "name": "Debug C with CodeLLDB",
       "type": "lldb",
       "request": "launch",
       "program": "${fileDirname}/${fileBasenameNoExtension}",
       "args": [],
       "cwd": "${fileDirname}",
-      "preLaunchTask": "C/C++: clang build active file"
+      "preLaunchTask": "Build C for Debug",
+      "terminal": "integrated",
+      "stdio": [null, null, null]
     }
   ]
 }
