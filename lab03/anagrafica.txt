@@ -1,0 +1,10 @@
+A0001 Mario Rossi 15/08/1980 ViaRoma Milano 20121
+A0002 Lucia Bianchi 03/11/1995 PiazzaSole Napoli 80100
+A0003 Andrea Verdi 29/02/1976 CorsoItalia Torino 10123
+A0004 Sofia Neri 10/05/2001 VialeEuropa Firenze 50100
+A0005 Marco Gialli 22/12/1965 LargoDueSanti Palermo 90141
+A0006 Elena Marroni 01/01/1990 ViaDellaSeta Bologna 40121
+A0007 Paolo Viola 17/04/1988 PonteNuovo Genova 16121
+A0008 Chiara Azzurri 05/09/2005 ViaMazzini Bari 70121
+A0009 Davide Rosa 30/06/1972 StradaVecchia Catania 95121
+A0010 Martina Bruno 08/03/1999 VicoStretto Venezia 30121

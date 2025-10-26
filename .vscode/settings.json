@@ -1,11 +1,24 @@
 {
-    "C_Cpp.errorSquiggles": "enabled",
-    "C_Cpp.intelliSenseEngine": "default",
-    "C_Cpp.default.compilerPath": "/usr/bin/clang",
-    "C_Cpp.default.cStandard": "c17",
-    "C_Cpp.default.intelliSenseMode": "macos-clang-arm64",
-    "files.associations": {
-        "*.c": "c",
-        "*.h": "c"
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build with gcc",
+      "type": "shell",
+      "command": "gcc",
+      "args": [
+        "-g",
+        "${workspaceFolder}/main.c",
+        "-o",
+        "${workspaceFolder}/main"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": ["$gcc"]
     }
+  ],
+  "files.associations": {
+    "stdlib.h": "c"
+  }
 }

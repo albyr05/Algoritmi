@@ -3,7 +3,7 @@
 int majority(int *a, int N);
 
 int main (){
-    int A[3] = {3, 1, 2};
+    int A[3] = {3, 3, 2};
     int major = majority(A, 3);
     if (major != -1){
         printf("L'elemento maggioritario del vettore è %d", major);
@@ -19,7 +19,7 @@ int majority (int *a, int N){
     if (N==1){
         return *a;      // if the vector's length is equal to 1 return the value itself
     }
-    int mid = N/2;
+    int mid = (N+1)/2;
     int x = majority (a, mid);      // result of left vector 
     int y =  majority (a+mid, N-mid);         // result of right vector considering both odd and even sizes
     int conta_x = 0, conta_y = 0;       // starting the counters
