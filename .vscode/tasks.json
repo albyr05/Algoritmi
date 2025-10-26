@@ -1,11 +1,62 @@
 {
+    "version": "2.0.0",
     "tasks": [
         {
-            "type": "cppbuild",
-            "label": "C/C++: gcc build active file",
-            "command": "/usr/bin/gcc",
+            "label": "Build C for Debug",
+            "type": "shell",
+            "command": "/usr/bin/clang",
             "args": [
-                "-fdiagnostics-color=always",
+                "-g",
+                "-O0",
+                "-Wall",
+                "${file}",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false
+            }
+        },
+        {
+            "label": "Build & Run C",
+            "type": "shell",
+            "command": "clang -Wall -g -O0 \"${file}\" -o \"${fileDirname}/${fileBasenameNoExtension}\" && echo '' && echo '🚀 Output del programma:' && echo '' && \"${fileDirname}/${fileBasenameNoExtension}\"",
+            "group": "build",
+            "presentation": {
+                "echo": false,
+                "reveal": "always",
+                "focus": false,
+                "panel": "dedicated",
+                "showReuseMessage": false,
+                "clear": true,
+                "close": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "type": "cppbuild",
+            "label": "C/C++: clang compila il file attivo",
+            "command": "/usr/bin/clang",
+            "args": [
+                "-fcolor-diagnostics",
+                "-fansi-escape-codes",
                 "-g",
                 "${file}",
                 "-o",
@@ -21,21 +72,7 @@
                 "kind": "build",
                 "isDefault": true
             },
-            "detail": "compiler: /usr/bin/gcc"
-        },
-        {
-            "label": "Run Program",
-            "type": "shell",
-            "command": "${fileDirname}/${fileBasenameNoExtension}",
-            "options": {
-                "cwd": "${fileDirname}"
-            },
-            "dependsOn": ["C/C++: gcc build active file"],
-            "group": {
-                "kind": "test",
-                "isDefault": true
-            }
+            "detail": "Attività generata dal debugger."
         }
-    ],
-    "version": "2.0.0"
+    ]
 }
