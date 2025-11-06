@@ -15,9 +15,10 @@ int stones_relations[4][2] = {{0, 1}, {2, 3}, {1, 0}, {2,3}};
 // }
 
 
-// WITH THIS IMPLEMENTATION I'M GETTING FAST SOLUTION ON EASY_TEST, AND WITH SOME MORE TIME ALSO ON HARD TEST (DON'T KNOW HOW TO DO BETTER)
+// WITH THIS IMPLEMENTATION I'M GETTING FAST SOLUTION (really good pruning)
 int calculate_necklace(int pos, int *sol, int *stones_N, int *maxlen, int N_total){
     int i, j;
+    int l = 0;
     
     if (pos > *maxlen) *maxlen = pos;           // pos is the current length of the necklace --> updating maxlength 
 
@@ -35,10 +36,19 @@ int calculate_necklace(int pos, int *sol, int *stones_N, int *maxlen, int N_tota
         for (j = 0; j < 2; j++){            // exploring only the possible brenches based on stones raltions
             i = stones_relations[sol[pos-1]][j];             
             if (stones_N[i] > 0){               // checking if there still are this type of stone
-                sol[pos] = i;              // insert the stones 
-                stones_N[i] --;         // decrementing the supply of the insert stone
-                calculate_necklace(pos+1, sol, stones_N, maxlen, N_total);      // recursive call to go onwards in necklace building 
-                stones_N[i] ++;             // BACKTRACK: puts back the stone 
+                if (i == 0 || i == 3){                  // if im inserting a zaffire or emerald (which can be followed by themselves)
+                    for (;stones_N[i] > 0; pos++, stones_N[i]--, l++){          // i'm inserting al those stones in a row to save a lot of recursive call
+                        sol[pos] = i;
+                    }
+                    calculate_necklace(pos, sol, stones_N, maxlen, N_total);        // then i can go on with recursion
+                    for (; l > 0; pos--, stones_N[i]++, l--);       // backtracking to remove these stones
+                }
+                else{
+                    sol[pos] = i;              // insert the stones 
+                    stones_N[i] --;         // decrementing the supply of the insert stone
+                    calculate_necklace(pos+1, sol, stones_N, maxlen, N_total);      // recursive call to go onwards in necklace building 
+                    stones_N[i] ++;             // BACKTRACK: puts back the stone 
+                }
             }
         }
     }

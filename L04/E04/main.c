@@ -46,7 +46,6 @@ void calculate_necklace(int pos, int current_val, int *sol, int *stones_N, int *
                 if (new_streak > maxrep){              // if it is greater try placing a new stone 
                     continue;
                 }
-                
                 sol[pos] = candidate;       // if all the checks are ok i can place the candidate stone
                 stones_N[candidate] --;         // eliminating the insert stone
                 current_val += stones_values[candidate];            // adding the insert stone value to the current val
