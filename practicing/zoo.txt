@@ -1,0 +1,7 @@
+6
+Lion 7
+Zebra 3
+Monkey 2
+Tiger 6
+Giraffe 5
+Panda 4
