@@ -122,7 +122,7 @@ void readfile(FILE *fp){
 }
 
 int main(){
-    FILE *fp = fopen("veryeasytest.txt", "r");
+    FILE *fp = fopen("easytest.txt", "r");
     
     if (fp == NULL){
         printf("ERRORE: impossibile aprire il file\n");

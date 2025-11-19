@@ -66,7 +66,7 @@ bool solve(int **m, int i, int j){
         if (check(m, cand, i , j)){
             m[i][j] = cand;
             if (j != 8){
-                if (solve(m, i, j+1)) return true;
+                if (solve(m, i, j+1)) return true; 
             }
             else if (i != 8){
                 if (solve(m, i+1, 0)) return true;
