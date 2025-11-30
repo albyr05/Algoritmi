@@ -105,7 +105,7 @@ bool check_valid(int pos, element candidate, int current_diff_diag, int total_di
         if (candidate.entry == 1 && candidate.priority == 0 && current_diff_diag + candidate.difficulty < DD && total_diff + candidate.difficulty < DP) return true; // front entrance condition, no priority and DD bound 
         return false;
     }
-    if (current_diff_diag + candidate.difficulty < DD && total_diff + candidate.difficulty < DP) return true; // compatibility for entrance/exit condition
+    if (current_diff_diag + candidate.difficulty <= DD && total_diff + candidate.difficulty <= DP) return true; // compatibility for entrance/exit condition
 
     return false; // not valid candidate
 }
@@ -137,11 +137,10 @@ void create_first_diag(element *first_diag, element *v, int nr, int **comp_matri
 
 
 void create_second_diag(element *second_diag, element *v, int nr, int **comp_matrix, int *total_diff, float *score){
-    int i, j, k, current_diff = 0;
+    int i, j, k;
     int lowest_diff = DD;
     float partial_score = 0.0;
     i = 0;
-    bool filled = false;
     for (j = 0; j < nr; j++){       // forcing two elements (the second has to be back acro)
         if (v[j].type == 1){
             for (k = 0; k < nr; k++){
@@ -184,7 +183,7 @@ void create_third_diag(element *third_diag, element *v, int nr, int **comp_matri
         canbefirst = false;
         
         // base controls
-        if (v[l].difficulty >= 8 && v[l].difficulty < DD && v[l].difficulty + (*total_diff) < DP){
+        if (v[l].difficulty >= 8 && v[l].difficulty <= DD && v[l].difficulty + (*total_diff) <= DP){
             
             // checking if the element can possibly be first 
             if (check_valid(0, v[l], 0, *total_diff)) canbefirst = true;
@@ -199,7 +198,7 @@ void create_third_diag(element *third_diag, element *v, int nr, int **comp_matri
             i--;
             
             // trying compatibile elements before it 
-            while (i >= 0 && current_diff < DD && (*total_diff) + current_diff < DP){
+            while (i >= 0 && current_diff <= DD && (*total_diff) + current_diff <= DP){
                 filled = false;
                 
                 for (j = 0; j < nr && !filled; j++){
@@ -266,12 +265,11 @@ void create_third_diag(element *third_diag, element *v, int nr, int **comp_matri
         }
         
         // next elements
-        while (i < ME && current_diff < DD){
+        while (i < ME && current_diff <= DD){
             filled = false;
             
             for (j = 0; j < nr && !filled; j++){
-                if (comp_matrix[index][j] == 1 && 
-                    check_valid(i, v[j], current_diff, *total_diff) && (acro || v[j].type != 0)){
+                if (comp_matrix[index][j] == 1 && check_valid(i, v[j], current_diff, *total_diff) && (acro || v[j].type != 0)){
                     
                     third_diag[i] = v[j]; 
                     current_diff += v[j].difficulty;
@@ -304,7 +302,6 @@ void greedy_approach(element *v, int nr){
     compatibility_matrix(&comp_matrix, nr, v);
     int total_diff = 0;
     float score = 0;
-    bool front_acro = false, back_acro = false;
     alloc_sol (&sol);
     create_first_diag(sol[0], v, nr, comp_matrix, &total_diff, &score);
     create_second_diag(sol[1], v, nr, comp_matrix, &total_diff, &score);
