@@ -8,6 +8,7 @@ typedef struct {
     int s; 
     int o;
     int e;
+    bool visited;
 }cell;
 
 typedef struct {
@@ -40,6 +41,7 @@ cell **readfile(char *filename){
         int row = i/N;
         int col = i%N;
         fscanf(fp, "%d %d %d %d", &grid[row][col].n, &grid[row][col].s, &grid[row][col].o, &grid[row][col].e);
+        grid[row][col].visited = false;
     }
     fclose(fp);
     return grid;
@@ -59,10 +61,12 @@ bool move_board (cell **grid, move m, int N){
                 int new_r = i + m.dr;
                 int new_c = j + m.dc;
                 if (in_boundaries(new_r, new_c, N)){
-                    if (isempty(grid[new_r][new_c])){
+                    if (isempty(grid[new_r][new_c]) && !grid[new_r][new_c].visited && !grid[i][j].visited){
                         grid[new_r][new_c] = grid[i][j];
+                        grid[new_r][new_c].visited = true;
                         grid[i][j] = set_empty();
                         one_movement = true;
+                        grid[i][j].visited = true;
                     }
                 }
             }

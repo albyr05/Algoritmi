@@ -143,7 +143,7 @@ void gen_k_partition (int pos, int curr_part, int *part, int V, int *best_weight
             tot_weight += weight;
         }
 
-        if (tot_weight > *best_weight){
+        if (tot_weight < *best_weight){
             *best_weight = tot_weight;
         }
         return;
