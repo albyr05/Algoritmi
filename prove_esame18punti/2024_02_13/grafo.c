@@ -69,21 +69,14 @@ bool explore_path(int curr_v, char *curr_p, char *string, graph G){
 
 bool check_path (char *string, graph G){
     int start = -1;
-    bool found = false ;
     int i;
     char *curr_p = string;
-    for (i = 0; i < G->V && !found; i++){
+    for (i = 0; i < G->V; i++){
         if (strstr (string, G->v[i].name) == curr_p){
             start = i;
-            found = true;
-            curr_p += strlen(G->v[i].name);     // vado avanti nella stringa della soluzione della lunghezza della prima parola
+            if (explore_path(start, curr_p + strlen(G->v[i].name), string, G)) return true;
         }
     }
-    if (start == -1) return false; // non ho trovato un punto di inizio
-
-    if (explore_path(start, curr_p, string, G)) return true;
-        
-
     return false;
     
 }
