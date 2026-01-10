@@ -25,10 +25,17 @@ bool isempty(cell x){
 }
 
 cell set_empty (){
-    
+    cell empty_cell = {0, 0, 0, 0, false};
+    return empty_cell;
 }
 bool is_source(cell x){
-
+    int count = 0;
+    if (x.e == 1) count ++;
+    if (x.s == 1) count ++;
+    if (x.n == 1) count ++;
+    if (x.o == 1) count ++;
+    if (count == 1) return true;
+    return false;
 }
 
 cell **readfile(char *filename){
@@ -162,7 +169,7 @@ bool generate_sol(cell **grid, int pos, move *moves, int *dr, int *dc, int k, in
         copy_status(copy, grid, N);
         move m = {dr[i], dc[i]};
         if (!move_board(copy, m, N)) continue;
-        moves[i] = m;
+        moves[pos] = m;
         if (generate_sol(copy, pos+1, moves, dr, dc, k, N)){
             free(copy);
             return true;
