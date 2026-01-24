@@ -103,7 +103,7 @@ bool dfs(cell **grid, int r, int c, bool **visited, int N, int sr, int sc){
         int nc = c + dc[i];
 
         if (in_boundaries(nr, nc, N) && !visited[nr][nc]){
-            if (compatible(grid[r][c], grid[nr][nc])){
+            if (compatible(grid[r][c], grid[nr][nc]) && !visited[nr][nc]){
                 if (dfs(grid, nr, nc, visited, N, sr, sc)) return true;
             }
         }
