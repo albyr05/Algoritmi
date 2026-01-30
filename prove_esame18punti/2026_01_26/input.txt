@@ -1,0 +1,17 @@
+8
+Rossi_Mario 1920/05/15 2000/03/20
+Rossi_Anna 1922/08/10 2005/07/12
+Rossi_Giovanni 1945/02/14 0/0/0
+Rossi_Maria 1947/11/20 0/0/0
+Bianchi_Luigi 1968/06/25 0/0/0
+Bianchi_Francesca 1970/09/30 0/0/0
+Bianchi_Marco 1995/12/05 0/0/0
+Bianchi_Sara 1998/04/18 0/0/0
+Rossi_Mario 1920/05/15 2000/03/20 Rossi_Giovanni 1945/02/14 0/0/0
+Rossi_Anna 1922/08/10 2005/07/12 Rossi_Giovanni 1945/02/14 0/0/0
+Rossi_Mario 1920/05/15 2000/03/20 Rossi_Maria 1947/11/20 0/0/0
+Rossi_Anna 1922/08/10 2005/07/12 Rossi_Maria 1947/11/20 0/0/0
+Rossi_Giovanni 1945/02/14 0/0/0 Bianchi_Luigi 1968/06/25 0/0/0
+Rossi_Maria 1947/11/20 0/0/0 Bianchi_Francesca 1970/09/30 0/0/0
+Bianchi_Luigi 1968/06/25 0/0/0 Bianchi_Marco 1995/12/05 0/0/0
+Bianchi_Luigi 1968/06/25 0/0/0 Bianchi_Sara 1998/04/18 0/0/0
